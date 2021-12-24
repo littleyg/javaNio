@@ -1,6 +1,3 @@
----
-theme: cyanosis
----
 我之前经常这么问自己，我真的懂JAVA IO和NIO吗？看着很简单，也经常使用，可是用过就忘了。
 
 JAVA IO是指Java程序处理输入输出，现在通常是指文件和网络IO。NIO是JDK 1.4之后提供的新的IO方面的API。
