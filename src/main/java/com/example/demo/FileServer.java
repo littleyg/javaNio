@@ -39,7 +39,12 @@ public class FileServer {
                 if (key.isAcceptable()){
                     acceptor.handleAccept(serverSocket, selector);
                 }else if (key.isReadable()){
-                    handler.readAndSend(key);
+                    try {
+                        handler.readAndSend(key);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                       key.channel().close();
+                    }
                 }
             }
         }
@@ -100,7 +105,7 @@ public class FileServer {
                         break;
                     }
                     prop.put("size",size);
-                    prop.put("fileChannel",FileChannel.open(Paths.get(size+".png"), StandardOpenOption.WRITE, StandardOpenOption.CREATE));
+                    prop.put("fileChannel",FileChannel.open(Paths.get("/dev/null"), StandardOpenOption.WRITE, StandardOpenOption.CREATE));
                 }
                 if ((Long)prop.get("size")>0L) {
                     FileChannel fileChannel =(FileChannel) prop.get("fileChannel");
